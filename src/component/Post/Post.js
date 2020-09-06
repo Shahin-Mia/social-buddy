@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from '../PostCard/PostCard';
-import { Container } from '@material-ui/core';
+import { Container, TextareaAutosize, Button } from '@material-ui/core';
 
 const Post = () => {
     const [posts, setPosts] = useState([]);
@@ -11,7 +11,11 @@ const Post = () => {
     }, []);
     return (
         <Container maxWidth="md">
-            <h1 style={{ textAlign: 'center', textDecoration: "underline" }}>ALL POSTS</h1>
+            <div style={{ marginTop: 65 }}>
+                <TextareaAutosize aria-label="minimum height" rowsMin={8} cols={100} placeholder="What's on your mind?" />
+                <br />
+                <Button variant="contained">Create Post</Button>
+            </div>
 
             {
                 posts.map(post => <PostCard key={post.id} post={post}></PostCard>)

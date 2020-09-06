@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container, Typography } from '@material-ui/core';
 import Comments from '../Comment/Comments';
 
@@ -18,13 +18,6 @@ const PostDetails = (props) => {
             .then(res => res.json())
             .then(data => setComments(data))
     }, []);
-    const style = {
-        textDecoration: "none",
-        float: "right",
-        color: "white",
-        padding: 5,
-        backgroundColor: "gray"
-    }
     return (
         <>
             <Container maxWidth="md">
@@ -35,7 +28,6 @@ const PostDetails = (props) => {
             </Container>
             <Container maxWidth="sm">
                 <Typography variant="button">Comments</Typography>
-                <Link to="/" style={style}>All Posts</Link>
                 {
                     comments.map(comment => <Comments key={comment.id} comment={comment}></Comments>)
                 }

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Card, CardActions, CardContent, Button, Typography, Box } from '@material-ui/core';
+import { Card, CardContent, Typography, Box, Avatar } from '@material-ui/core';
 import { PhotoContext } from '../../App';
 import './Comments.css';
 const useStyles = makeStyles({
@@ -15,6 +15,10 @@ const useStyles = makeStyles({
     pos: {
         marginBottom: 12,
     },
+    large: {
+        width: 75,
+        height: 75,
+    },
 });
 
 const Comments = (props) => {
@@ -28,7 +32,7 @@ const Comments = (props) => {
         <Card className={classes.root}>
             <CardContent>
                 <Box display="flex" p={1}>
-                    <img src={photo[id]} alt="" />
+                    <Avatar src={photo[id]} className={classes.large} />
                     <div>
                         <Typography variant="subtitle1">{name}</Typography>
                         <Typography className={classes.pos} color="textSecondary">{email}</Typography>

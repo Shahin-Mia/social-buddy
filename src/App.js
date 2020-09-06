@@ -3,12 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import './App.css';
 import Post from './component/Post/Post';
 import PostDetails from './component/PostDetails/PostDetails';
+import Header from './component/Header/Header';
 
 export const PhotoContext = createContext();
 
@@ -21,20 +21,23 @@ function App() {
       .then(data => setPicture(data.results))
   }, []);
 
-  const picture2 = picture.map(i => i.picture.medium);
+  const profilePic = picture.map(i => i.picture.medium);
   return (
-    <Router>
-      <Switch>
-        <Route path="/post/:postId">
-          <PhotoContext.Provider value={picture2}>
-            <PostDetails></PostDetails>
-          </PhotoContext.Provider>
-        </Route>
-        <Route exact path="/">
-          <Post></Post>
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Header></Header>
+      <Router>
+        <Switch>
+          <Route path="/post/:postId">
+            <PhotoContext.Provider value={profilePic}>
+              <PostDetails></PostDetails>
+            </PhotoContext.Provider>
+          </Route>
+          <Route exact path="/">
+            <Post></Post>
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
